@@ -1,0 +1,9 @@
+/* iPhone 5 - Safari */
+@media (max-height: 545px) {
+	@import "features/policy/policy-545px";
+
+	// Features
+	@import "features/coverage/equalizer/equalizer";
+	@import "features/policy/brief/brief";
+	@import "features/onboarding/tooltip/tooltip";
+};

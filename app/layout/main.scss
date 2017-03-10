@@ -1,0 +1,48 @@
+.button.button-icon:hover {
+	color: #fff;
+}
+
+.notification-icon {
+	position: absolute;
+	top: 0;
+	margin-top: -8px;
+	margin-left: 3px;
+}
+
+.contactus-icon {
+	width: 24px;
+	height: 24px;
+	background: url(../static-assets/img/icon-phone.png) center no-repeat;
+	margin: 1px 0px 0px 10px;
+}
+
+.menu-item-dim {
+	> .item {
+		padding-bottom: 0 !important;
+
+		> a {
+			color: darken($placeholder-color, 25);
+			font-size: 0.8em;
+			line-height: 1.4em;
+		}
+
+		&:last-child {
+			margin-bottom: $global-padding;
+		}
+	}
+}
+
+/* Desktop version */
+@media (min-width: 768px) and (max-width: 780px){
+/*@media (min-width: 768px){*/
+	.button.button-icon {
+		display: none;
+	}
+	.contactus-icon {
+		margin: 1px 0px 0px 6px;
+	}
+}
+
+.username {
+	padding-right: 10px;
+}

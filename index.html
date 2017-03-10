@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content = "width = device-width, initial-scale = 1.0, minimum-scale = 1, maximum-scale = 1, user-scalable = no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>UEX</title>
+
+		<!-- compiled css output -->
+		<link href="build/uex.min.css" rel="stylesheet">
+		<link rel="apple-touch-icon" href="static-assets/img/launch-icon.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="static-assets/img/launch-icon.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="static-assets/img/launch-icon.png">
+
+		<!-- vendor js -->
+		<script src="build/vendor.min.js"></script>
+
+		<!-- App's js -->
+		<script src="build/templates.js"></script>
+		<script src="build/uex.js"></script>
+	</head>
+	<body ng-app="uex">
+		<div class="phone-button"></div>
+		<div class="phone-case"></div>
+		<div class="phone-screen">
+			<ion-nav-view></ion-nav-view>
+		</div>
+		<div class="marketing-wrapper o-ios-scroll" ng-if="$root.isScreenDesktop">
+			<iframe class="o-full" src="//www.uexglobal.com"></iframe>
+		</div>
+	</body>
+</html>

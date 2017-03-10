@@ -1,0 +1,141 @@
+<!-- Desktop version -->
+<ion-side-menus expose-aside-when="(min-width:768px) and (max-width:779px)">
+<!-- <ion-side-menus expose-aside-when="large"> -->
+	<!-- Content -->
+	<ion-side-menu-content drag-content="false">
+		<ion-nav-bar class="primary-bgcolor" align-title="center">
+			<ion-nav-back-button class="button-light">
+			</ion-nav-back-button>
+			<ion-nav-buttons side="left">
+				<button menu-toggle="left" class="button button-icon icon ion-navicon light-color">
+					<i ng-if="vm.isPending() || vm.isReview()" class="ion-information-circled assertive notification-icon"></i>
+				</button>
+				<button class="button-icon icon contactus-icon light-color" ng-click="vm.contactUs()">
+				</button>
+			</ion-nav-buttons>
+		</ion-nav-bar>
+		<ion-nav-view name="content"></ion-nav-view>
+	</ion-side-menu-content>
+
+	<!-- Left side menu -->
+	<ion-side-menu side="left">
+		<header class="bar bar-header">
+			<div class="title">
+				<div menu-close nav-clear ng-if="!vm.userSession" ng-click="vm.signIn()">
+					{{"menu.SIGNIN" | translate}}
+				</div>
+
+				<div class="row" ng-if="vm.userSession">
+					<div class="o-truncator col-80 username">
+						{{vm.userSession ? vm.userSession.username : ("menu.TITLE" | translate)}}
+					</div>
+					<div menu-close nav-clear class="text-right logout-button col-20" ng-click="vm.signOut()">
+						{{"menu.SIGNOUT" | translate}}
+					</div>
+				</div>
+			</div>
+		</header>
+		<ion-content class="has-header item-content">
+			<ion-list>
+
+				<div class="policy">
+					<div ng-if="vm.userSession && vm.userPolicy && !vm.isCustomizedEnabled">
+						<ion-item menu-close nav-clear>
+							<div ui-sref="uex.policy.mine">
+								{{"menu.MY_POLICY" | translate}}
+								<span ng-if="vm.isPending()" class="item-note assertive">{{"menu.PENDING" | translate}}</span>
+								<span ng-if="vm.isDraft()" class="item-note positive">{{"menu.DRAFT" | translate}}</span>
+								<span ng-if="vm.isReview()" class="item-note assertive">{{"menu.REVIEW" | translate}}</span>
+							</div>
+						</ion-item>
+
+						<ion-item menu-close nav-clear
+							ng-click="vm.changeMyPolicy()">
+							{{"menu.CHANGE_MY_POLICY" | translate}}
+						</ion-item>
+					</div>
+
+					<ion-item menu-close nav-clear ng-if="!vm.userSession || !vm.userPolicy || vm.isCustomizedEnabled">
+						<div ui-sref="uex.policy.customise">
+							{{"menu.MY_POLICY" | translate}}
+						</div>
+					</ion-item>
+					<!-- TODO: Enable if change password not via reset password is supported -->
+					<!-- <ion-item menu-close nav-clear ng-if="vm.userSession">
+						<div ui-sref="uex.password.change">
+							{{"menu.CHANGE_PASSWORD" | translate}}
+						</div>
+					</ion-item> -->
+					<hr/>
+				</div>
+
+				<div class="wordings">
+					<ion-item class="sub-title">{{"menu.DOWNLOAD_POLICY_WORDINGS" | translate}}</ion-item>
+
+					<ion-item menu-close nav-clear 
+						ng-repeat="brochure in vm.brochures" 
+						ng-href="{{vm.downloadProductUrl(vm.product.code, brochure.code)}}"
+						ng-click="vm.gaDownloadTrack(brochure.name)">
+						{{brochure.name}}
+					</ion-item>
+
+					<hr/>
+				</div>
+
+				<div class="claim" ng-if="vm.userSession && vm.userPolicy && vm.userPolicy.product.config.claims.length > 0">
+					<ion-item class="sub-title">{{"menu.SUBMIT_A_CLAIM" | translate}}</ion-item>
+
+					<ion-item menu-close nav-clear 
+						ng-repeat="claim in vm.userPolicy.product.config.claims" 
+						ng-href="{{claim.link}}" target="_blank">
+						{{claim.description}}
+					</ion-item>
+
+					<hr/>
+				</div>
+
+				<div class="help">
+					<ion-item class="sub-title">{{"menu.HELP_AND_SUPPORT" | translate}}</ion-item>
+					<ion-item menu-close nav-clear
+						ng-click="vm.startTour()">
+						{{"menu.START_TOUR" | translate}}
+					</ion-item>
+
+					<ion-item menu-close nav-clear
+						ng-click="vm.onboarding()"
+						ng-show="!vm.userPolicy && vm.hasChosenStatus()">
+						{{"menu.ONBOARDING" | translate}}
+					</ion-item>
+
+					<ion-item menu-close nav-clear
+						ng-click="vm.email()">
+						{{"contactus.REQUEST_FOR_ASSISTANCE" | translate}}
+					</ion-item>
+				</div>
+
+				<div class="forms menu-item-dim" ng-if="vm.forms">
+					<hr/>
+
+					<ion-item class="sub-title">{{"menu.FORMS" | translate}}</ion-item>
+					
+					<ion-item menu-close nav-clear 
+						ng-repeat="forms in vm.forms" 
+						ng-href="{{forms.link}}" target="_blank">
+						{{forms.name}}
+					</ion-item>
+				</div>
+
+				<div class="legal menu-item-dim">
+					<hr/>
+
+					<ion-item class="sub-title">{{"menu.LEGAL" | translate}}</ion-item>
+					
+					<ion-item menu-close nav-clear 
+						ng-href="//www.uexglobal.com/legal" target="_blank">
+						{{"menu.TERMS" | translate}}
+					</ion-item>
+				</div>
+			</ion-list>
+		</ion-content>
+	</ion-side-menu>
+</ion-side-menus>

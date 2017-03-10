@@ -1,0 +1,226 @@
+$phone-width: 385px; 
+$phone-padding-horizontal: 34px;
+$phone-padding-vertical: 36px;
+$screen-width: $phone-width - 2*$phone-padding-horizontal;
+$screen-height: 545px;
+
+// Mixins
+@mixin screen-size($scale) {
+	$phone-width: $phone-width * $scale; 
+	$phone-padding-horizontal: $phone-padding-horizontal * $scale;
+	$phone-padding-vertical: $phone-padding-vertical * $scale;
+	$screen-width: $phone-width - 2*$phone-padding-horizontal;
+	$screen-height: $screen-height * $scale;
+
+	body { 
+		> *:not(.marketing-wrapper), 
+		> .phone-screen {
+			top: calc(50% - #{$screen-height/2});
+			left: $phone-padding-horizontal;
+			width: $screen-width !important;
+			height: $screen-height !important;
+		}
+
+		> .phone-case {
+			/* Override *:not(.marketing-wrapper)*/
+			width: $phone-width !important;
+			height: 100vh !important;
+
+			background-size: $phone-width $screen-height+$phone-padding-vertical*4;
+		}
+
+		> .phone-button {
+			/* Override *:not(.marketing-wrapper) */
+			width: $phone-width !important;
+			height: 100vh !important;
+
+			top: calc(50% + #{$screen-height/2});
+			background-size: $phone-width $phone-padding-vertical*2;
+		}
+
+		> .marketing-wrapper {
+			width: calc(100% - #{$phone-width}) !important;
+			left: $phone-width;
+		}
+
+		.popover-backdrop {
+			/* Override *:not(.marketing-wrapper) */
+			width: 100% !important;
+			height: 100% !important;
+		}
+
+		@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+			/* IE10+ CSS styles go here */
+			.firsttime-backdrop, .onboarding-backdrop {
+				top: calc(50% - #{$screen-height/2}) !important;
+				left: $phone-padding-horizontal !important;
+				width: $screen-width !important;
+				height: $screen-height !important;
+			}
+		}
+	}
+}
+
+.marketing-wrapper {
+	display: none;
+}
+
+@media (min-width: 780px) {
+	body { 
+		pointer-events: auto !important;
+
+		> *:not(.phone-case) *,
+		> *:not(.phone-button) *,
+		> *:not(.marketing-wrapper) * {
+			cursor: url('../static-assets/img/desktop/finger.png') 5 5, auto !important;
+		}
+
+		> *:not(.marketing-wrapper), 
+		> .phone-screen {
+			top: calc(50% - #{$screen-height/2});
+			left: $phone-padding-horizontal;
+			width: $screen-width !important;
+			height: $screen-height !important;
+		}
+
+		> .phone-case {
+			position: absolute;
+			top: 0 !important;
+			left: 0 !important;
+			width: $phone-width !important;
+			height: 100vh !important;
+			background: url("../static-assets/img/desktop/phone-case-real.png") no-repeat center center;
+			background-size: $phone-width $screen-height+$phone-padding-vertical*4;
+			pointer-events: none;
+		}
+
+		> .phone-button {
+			background: #fff url("../static-assets/img/desktop/phone-button-real.png") no-repeat top center;
+			background-size: $phone-width $phone-padding-vertical*2;
+			position: absolute;
+			width: $phone-width !important;
+			z-index: $z-index-backdrop+1;
+			left: 0 !important;
+			top: calc(50% + #{$screen-height/2});
+		}
+
+		> .phone-screen {
+			position: absolute;
+		}
+
+		> .marketing-wrapper {
+			display: block;
+			position: absolute;
+			top: 0;
+			left: $phone-width;
+			width: calc(100% - #{$phone-width}) !important;
+			height: 100vh !important;
+			z-index: $z-index-backdrop - 1;
+			/*padding: $global-padding;*/
+		}
+
+		/* Override */
+		.popover-backdrop {
+			top: 0 !important;
+			left: 0 !important;
+			width: 100% !important;
+			height: 100% !important;
+		}
+
+		input::-webkit-calendar-picker-indicator {
+			display: none;
+		}
+
+		input[type="date"]::-webkit-input-placeholder { 
+			visibility: hidden !important;
+		}
+
+		/* Ion-scroll handling */
+		.policy-profile-list.first-time .overflow-scroll {
+			overflow: hidden !important;
+		}
+		.policy-profile-list:not(.first-time) .overflow-scroll {
+			overflow: auto !important;
+		}
+
+		#tour .scroll-view.scroll-y {
+			overflow-y: auto !important;
+		}
+
+		@media (min-width: 680px) {
+			/* Override */
+			.active .modal-backdrop-bg {
+				opacity: 0;
+			}
+		}
+
+		@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+			/* IE10+ CSS styles go here */
+			.firsttime-backdrop, .onboarding-backdrop {
+				top: calc(50% - #{$screen-height/2}) !important;
+				left: $phone-padding-horizontal !important;
+				width: $screen-width !important;
+				height: $screen-height !important;
+			}
+
+			.onboarding-block, .onboarding-object, .onboarding-arrow {
+				position: absolute !important;
+			}
+
+			.content-div .content {
+				overflow: visible;
+			}
+
+			#tour .questions .response .correct-image {
+				margin-left: -20px;
+			}
+
+			.equalizer .overflow-scroll, .policy-profile-list:not(.first-time) .overflow-scroll {
+				overflow: auto !important;
+			}
+
+			select {
+				height: 100%;
+			}
+
+			.notification-icon {
+				margin-left: -8px;
+			}
+		}
+
+		@supports (-ms-ime-align:auto) {
+			/* IE Edge CSS styles go here */
+			
+
+			select {
+				height: 100%;
+			}
+
+			.notification-icon {
+				margin-left: -8px;
+			}
+		}
+	}
+
+	@media (min-height: 720px) {
+		@include screen-size(1); 
+	}
+	@media (min-height: 768px) {
+		@include screen-size(1.1); 
+	}
+	@media (min-height: 800px) {
+		@include screen-size(1.15); 
+	}
+	@media (min-height: 900px) {
+		@include screen-size(1.25); 
+	}
+	@media (min-height: 960px) {
+		@include screen-size(1.35); 
+	}
+	@media (min-height: 1024px) {
+		@include screen-size(1.45); 
+	}
+	@media (min-height: 1080px) {
+		@include screen-size(1.55); 
+	}
+}

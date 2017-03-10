@@ -1,0 +1,100 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../static-assets/fonts" !default;
+
+// Variables
+@import "stylesheets/variables/color";
+
+// Include all of Ionic
+@import "lib/ionic/scss/ionic";
+
+// Vendors
+@import "lib/angularjs-slider/dist/rzslider";
+
+// Helpers/Util
+@import "stylesheets/util/functions";
+@import "stylesheets/util/mixins";
+@import "stylesheets/util/utilities";
+@import "stylesheets/util/zindex";
+
+// Ext
+@import "stylesheets/ext/ionic-scroll-ext";
+@import "stylesheets/ext/ionic-menu-ext";
+@import "stylesheets/ext/ionic-items-ext";
+@import "stylesheets/ext/ionic-popover-ext";
+@import "stylesheets/ext/ionic-modal-ext";
+@import "stylesheets/ext/ionic-button-ext";
+@import "stylesheets/ext/ionic-form-ext";
+@import "stylesheets/ext/ionic-bar-ext";
+@import "stylesheets/ext/ionic-popup-ext";
+@import "stylesheets/ext/rzslider-ext";
+
+// Base
+@import "stylesheets/base/color";
+@import "stylesheets/base/global";
+@import "stylesheets/base/type";
+@import "stylesheets/base/buttons";
+@import "stylesheets/helper/helper";
+@import "stylesheets/base/animation";
+
+// Components
+@import "components/nav-title/nav-title";
+@import "components/form-validation/form-validation";
+@import "components/date-picker/date.picker";
+@import "components/accordion/accordion";
+@import "components/signature/signature";
+@import "components/rating/rating";
+@import "components/modal/modal";
+
+// Features
+@import "layout/main";
+@import "features/password/password";
+@import "features/policy/policy";
+@import "features/policy/header/header";
+@import "features/policy/header/profile";
+@import "features/policy/header/premium-factors";
+@import "features/policy/price-header/price-header";
+@import "features/policy/price-header/notification";
+@import "features/policy/my-policy/my-policy";
+@import "features/policy/customisation/customisation";
+@import "features/policy/form/form";
+@import "features/policy/tnc/tnc";
+@import "features/policy/summary/summary";
+@import "features/policy/card/card";
+@import "features/policy/review/review";
+@import "features/policy/profile-list/profile-list";
+@import "features/policy/upload-photo/upload-photo";
+@import "features/signup/signup";
+@import "features/coverage/equalizer/dependents-selector";
+@import "features/coverage/equalizer/dependents-list/list";
+@import "features/coverage/equalizer/dependents-list/discount-list/discount-list";
+@import "features/coverage/equalizer/dependents-list/area-of-coverage/area-of-coverage";
+@import "features/coverage/equalizer/dependents-list/price-discount-label/price-discount-label";
+@import "features/coverage/equalizer/dependents-list/insuree-factors/insuree-factors";
+@import "features/coverage/equalizer/equalizer";
+@import "features/coverage/coverage-details/coverage-details";
+@import "features/coverage/key-elements/key-elements";
+@import "features/coverage/lines/lines";
+@import "features/policy/brief/brief";
+@import "features/policy/payment/payment";
+@import "features/onboarding/tooltip/tooltip";
+@import "features/tour/tour";
+@import "layout/desktop";
+
+@import "index-545px";
