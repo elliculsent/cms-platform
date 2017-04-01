@@ -1,21 +1,14 @@
-## Getting Started - Client
+## Getting Started 
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
-### Prerequisites
+## Prerequisites
 
 * [NodeJS/NPM](https://nodejs.org) - Package Management
 * [Gulp](http://gulpjs.com) - Build Tool
 * [Bower](http://bower.io) - Dependency Management
 
-### Installing
-
-Open command prompt and switch current directory to uex/client
-
-```
-cd uex/client
-```
-
+## Installing
 Execute the following to install gulp NPM module globally. Gulp is a build/task runner to help automate client-side build tasks.
 
 ```
@@ -38,14 +31,6 @@ Execute the following to download all bower dependencies for the project
 
 ```
 bower install
-```
-
-Before running the client server, make sure your Grails server is running.
-
-Switch environment to local
-
-```
-gulp switch-env --env local
 ```
 
 Execute the following to run the web server locally and watch for file changes. 

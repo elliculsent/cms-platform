@@ -1,71 +1,48 @@
 (function(){
 	'use strict';
 
-	angular.module('uex', [
-
-	'ionic',
+	angular.module('cms', [
 
 	/*
 	 * Angular modules
 	 */
 	'ngSanitize',
-
+	'ngAnimate',
+	'ui.router',
+	'ngMaterial',
 	/*
 	 * Our reusable cross app code modules
 	 */
-	'uexTemplates',
-
+	'cmsTemplates',
 	/*
 	 * 3rd Party modules
 	 */
 	'pascalprecht.translate', //angular-translate
 	'tmh.dynamicLocale', //angular-dynamic-locale
 	'rzModule',
-	'ionic-datepicker',
 	'angulartics',
 	'angulartics.google.analytics',
 	// '720kb.socialshare',
 	'angular-clipboard',
-
-	/*
-	 * Services 
-	 */
-	'uex.services',
-
+        
+        
 	/*
 	 * Component modules
 	 */
-	'uex.cache',
-	'uex.sideMenu',
-	'uex.lang',
-	'uex.navTitle',
-	'uex.auth',
-	'uex.formValidation',
-	'uex.countrySelect',
-	'uex.dateValidator',
-	'uex.signature',
-	'uex.accordion',
-	'uex.popup',
-	'uex.rating',
-	'uex.imageResize',
-	'uex.modal',
-	'uex.share',
-	'uex.contactus',
-	'uex.googleAnalytics',
-	'uex.floodlight',
-	'uex.screen',
-	'uex.env',
-
+	'cms.cache',
+    'nav.menu',
+        
+    
 	/*
+	 * Services
+	 */
+	'cms.services',
+    'cms.auth',
+        
+    /*
 	 * Feature modules
 	 */
-	'uex.tour',
-	'uex.onboarding',
-	'uex.policy',
-	'uex.pricing',
-	'uex.signup',
-	'uex.password',
-	'uex.validation'
-
+	'cms.manage',
+        
 	]);
 })();

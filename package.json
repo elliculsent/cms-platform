@@ -1,10 +1,10 @@
 {
-  "name": "uex",
-  "version": "0.2.0",
+  "name": "cms-client",
+  "version": "0.1.0",
   "private": "true",
-  "description": "UEX Client Application",
+  "description": "CMS Client Application",
   "main": "",
-  "author": "Leo Tech Services Pte Ltd",
+  "author": "iQhry",
   "license": "ISC",
   "devDependencies": {
     "bower": "^1.4.1",
@@ -34,7 +34,7 @@
     "karma-jasmine": "^0.3.8",
     "karma-junit-reporter": "^0.4.2",
     "karma-phantomjs-launcher": "^1.0.0",
-    "node-sass": "3.4.2",
+    "node-sass": "4.5.0",
     "phantomjs-prebuilt": "^2.1.7",
     "run-sequence": "^1.1.5"
   }

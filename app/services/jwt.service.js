@@ -2,7 +2,7 @@
 	'use strict';
 
 	// Registration
-	angular.module('uex.services')
+	angular.module('cms.services')
 		.factory('JwtService', JwtService);
 
 	// Dependency injection

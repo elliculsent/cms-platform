@@ -26,12 +26,11 @@ var paths = {
 	js: [
 		'./app/services/**/*.module.js',
 		'./app/services/**/*.js',
-		//'./app/components/**/*.module.js',
-		//'./app/components/**/*.js',
+		'./app/components/**/*.module.js',
+		'./app/components/**/*.js',
 		'./app/features/**/*.module.js',
 		'./app/features/**/*.js',
 		'./app/index.module.js',
-		'./app/filters/**/*.js',
 		'./app/config/**/*.js',
 		'!./app/**/*.spec.js'
 	],
@@ -82,7 +81,7 @@ gulp.task('switch-env', [], function() {
 /* Cleans vendor generated files */
 gulp.task('clean-vendor', function() {
 	return gulp.src([
-		'./static-assets/fonts/!(uex)', // Vendor fonts files
+		'./static-assets/fonts/!(cms)', // Vendor fonts files
 		'./build/vendor*.js' // Vendor all
 	], {
 		read: false
@@ -93,10 +92,11 @@ gulp.task('clean-vendor', function() {
 
 gulp.task('vendor-fonts', function() {
 	return gulp.src([
-		'./lib/ionic/fonts/ionicons.eot',
-		'./lib/ionic/fonts/ionicons.svg',
-		'./lib/ionic/fonts/ionicons.ttf',
-		'./lib/ionic/fonts/ionicons.woff'
+		'./lib/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.eot',
+		'./lib/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.svg',
+		'./lib/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.ttf',
+		'./lib/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.woff',
+		'./lib/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.woff2',
 	])
 	.pipe(gulp.dest('./static-assets/fonts/'))
 	.pipe(print(out));
@@ -106,22 +106,24 @@ gulp.task('vendor-fonts', function() {
 gulp.task('vendor-js', function() {
 	// Bundle vendor scripts
 	return gulp.src([
-			'./lib/ionic/js/ionic.bundle.js',
+			'./lib/angular/angular.js',
+			'./lib/angular-sanitize/angular-sanitize.js',
+			'./lib/angular-animate/angular-animate.js',
+			'./lib/angular-ui-router/release/angular-ui-router.js',
+			'./lib/angularjs-slider/dist/rzslider.js',
+			'./lib/moment/moment.js',
 			'./lib/jquery/dist/jquery.js',
+			'./lib/bootstrap-sass/assets/javascripts/bootstrap.js',
 			'./lib/toastr/toastr.js',
 			'./lib/lodash/dist/lodash.js',
-			'./lib/moment/moment.js',
 			'./lib/angular-translate/angular-translate.js',
 			'./lib/angular-dynamic-locale/src/tmhDynamicLocale.js',
 			'./lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
 			'./lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js',
 			'./lib/angular-translate-storage-local/angular-translate-storage-local.js',
 			'./lib/angular-translate-handler-log/angular-translate-handler-log.js',
-			'./lib/angular-messages/angular-messages.js',
 			'./lib/angular-cache/dist/angular-cache.js',
-			'./lib/angularjs-slider/dist/rzslider.js',
-			'./lib/datepicker-for-ionic/dist/templates.min.js',
-			'./lib/ionic-datepicker/dist/ionic-datepicker.bundle.min.js',
+			'./lib/bootstrap-sass-datepicker/js/bootstrap-sass-datepicker.js',
 			'./lib/angular-country-picker/country-picker.js',
 			'./lib/file-saver/FileSaver.min.js',
 			// './lib/angular-socialshare/dist/angular-socialshare.js',
@@ -129,6 +131,9 @@ gulp.task('vendor-js', function() {
 			'./lib/angulartics/dist/angulartics.min.js',
 			'./lib/angulartics-google-analytics/dist/angulartics-ga.min.js',
 			'./lib/angular-clipboard/angular-clipboard.js',
+			'./lib/angular-messages/angular-messages.js',
+			'./lib/angular-aria/angular-aria.js',
+			'./lib/angular-material/angular-material.js'
 		])
 		.pipe(concat({
 			path: 'vendor.js',
@@ -139,12 +144,12 @@ gulp.task('vendor-js', function() {
 		.pipe(rename({
 			suffix: '.min'
 		}))
-		.pipe(uglify({
+		/*.pipe(uglify({
 			mangle: false,
 			compress: {
 				drop_console: true
 			}
-		}))
+		}))*/
 		.pipe(gulp.dest('./build/'))
 		.pipe(print(out));
 });
@@ -157,7 +162,7 @@ gulp.task('vendor', ['vendor-fonts', 'vendor-js'], function(callback) {
 /* Cleans js generated files */
 gulp.task('clean-js', function() {
 	return gulp.src([
-		'./build/uex*.js', // App script files
+		'./build/cms*.js', // App script files
 	], {
 		read: false
 	}).pipe(clean({
@@ -169,7 +174,7 @@ gulp.task('clean-js', function() {
 gulp.task('js', function() {
 	return gulp.src(paths.js)
 	.pipe(sourcemaps.init())
-	.pipe(concat('uex.js'))
+	.pipe(concat('cms.js'))
 	.pipe(sourcemaps.write())
 	.pipe(gulp.dest('./build/'))
 	.pipe(print(out));
@@ -194,12 +199,12 @@ gulp.task('sass', function(done) {
 		])
 	.pipe(sass())
 	.on('error', sass.logError)
-	.pipe(rename('uex.css'))
+	.pipe(rename('cms.css'))
 	.pipe(gulp.dest('./build/'))
 	.pipe(minifyCss({
 	  keepSpecialComments: 0
 	}))
-	.pipe(rename('uex.min.css'))
+	.pipe(rename('cms.min.css'))
 	.pipe(gulp.dest('./build/'))
 	.pipe(print(out));
 });
@@ -221,7 +226,7 @@ gulp.task('template', function() {
 		.pipe(templateCache('templates.js',{
 			standalone: true,
 			root: 'templateCache',
-			module: 'uexTemplates'
+			module: 'cmsTemplates'
 		}))
 		.on('error', swallowError)
 		.pipe(gulp.dest('./build'))
@@ -333,7 +338,7 @@ gulp.task('watch', ['compile'], function() {
 
 gulp.task('serve', ['watch'], function() {
 	connect.server({
-		port: 8100
+		port: 2017
 	});
 });
 

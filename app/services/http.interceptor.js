@@ -2,7 +2,7 @@
 	'use strict';
 
 	// Registration
-	angular.module('uex.services')
+	angular.module('cms.services')
 		.provider('HttpInterceptor', HttpInterceptorProvider);
 
 	function HttpInterceptorProvider() {
@@ -55,8 +55,8 @@
 		function onResponse(resp){
 			// Checked exceptions
 			if(resp.data && resp.data.success == false && resp.data.error) {
-				var $ionicLoading = $injector.get('$ionicLoading');
-				$ionicLoading.hide();
+				//var $ionicLoading = $injector.get('$ionicLoading');
+				//$ionicLoading.hide();
 				var code = resp.data.error.code;
 				if(code) {
 					resp.data.error.messageKey = ERROR[code];
@@ -72,8 +72,8 @@
 		};
 
 		function onResponseError(response){
-			var $ionicLoading = $injector.get('$ionicLoading');
-			$ionicLoading.hide();
+			//var $ionicLoading = $injector.get('$ionicLoading');
+			//$ionicLoading.hide();
 			var httpStatus = response.status;
 			// Inject error message key based on error code
 			if(response.data &&

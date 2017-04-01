@@ -19,10 +19,10 @@ $dark:                            #444 !default;
 $ionicons-font-path: "../static-assets/fonts" !default;
 
 // Variables
-@import "stylesheets/variables/color";
+//@import "stylesheets/variables/color";
 
 // Include all of Ionic
-@import "lib/ionic/scss/ionic";
+/*@import "lib/ionic/scss/ionic";
 
 // Vendors
 @import "lib/angularjs-slider/dist/rzslider";
@@ -97,4 +97,4 @@ $ionicons-font-path: "../static-assets/fonts" !default;
 @import "features/tour/tour";
 @import "layout/desktop";
 
-@import "index-545px";
+@import "index-545px";*/

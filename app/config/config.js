@@ -2,17 +2,17 @@
 	'use strict';
 
 	// Registration
-	angular.module('uex')
+	angular.module('cms')
 		.config(Config);
 
 	// Dependency injection
 	Config.$inject = ['$httpProvider', '$provide', 
-		'HttpInterceptorProvider', 'ExceptionHandlerProvider', 'IEServiceProvider',
-		'$translateProvider', 'tmhDynamicLocaleProvider', 'CacheFactoryProvider', 'ionicDatePickerProvider', '$ionicConfigProvider'];
+		'HttpInterceptorProvider', 'ExceptionHandlerProvider',
+		'$translateProvider', 'tmhDynamicLocaleProvider', 'CacheFactoryProvider'];
 
 	function Config($httpProvider, $provide,
-		HttpInterceptorProvider, ExceptionHandlerProvider, IEServiceProvider,
-		$translateProvider, tmhDynamicLocaleProvider, CacheFactoryProvider, ionicDatePickerProvider, $ionicConfigProvider) {
+		HttpInterceptorProvider, ExceptionHandlerProvider,
+		$translateProvider, tmhDynamicLocaleProvider, CacheFactoryProvider) {
 		// Configure HTTP interceptor implementation
 		$httpProvider.interceptors.push(HttpInterceptorProvider.$get);
 
@@ -44,7 +44,7 @@
 		// Set the local storage prefix
 		angular.extend(CacheFactoryProvider.defaults, {
 			storageMode: 'localStorage',
-			storagePrefix: 'uex-',
+			storagePrefix: 'cms-',
 			axAge: 180 * 60 * 1000, // Items added to this cache expire after 15 minutes
 			cacheFlushInterval: 180 * 60 * 1000, // This cache will clear itself every 3 hours
 			deleteOnExpire: 'aggressive', // Items will be deleted from this cache when they expire
@@ -53,29 +53,5 @@
 			}
 		});
 
-		// Date picker default -- TODO: translate
-		var datePickerObj = {
-			inputDate: new Date(),
-			setLabel: 'Set',
-			todayLabel: 'Today',
-			closeLabel: 'Close',
-			mondayFirst: true,
-			weeksList: ["S", "M", "T", "W", "T", "F", "S"],
-			monthsList: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
-			templateType: 'popup',
-			from: new Date(2012, 8, 1),
-			to: new Date(2018, 8, 1),
-			showTodayButton: true,
-			dateFormat: 'dd MMMM yyyy',
-			closeOnSelect: false,
-			disableWeekdays: []
-		};
-		ionicDatePickerProvider.configDatePicker(datePickerObj);
-
-		ionic.Platform.setPlatform('ios');
-
-		$ionicConfigProvider.views.maxCache(0);
-
-		IEServiceProvider.overrideNgClick();
 	}
 })();
